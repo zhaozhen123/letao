@@ -1,11 +1,145 @@
-.body_bg{
+* {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a:link {
+    text-decoration: none;
+}
+
+.body_bg {
     background-color: #222D33;
 }
-.container{
+
+.container {
     margin-top: 150px;
 }
-.panel-title{
+
+.panel-title {
     height: 40px;
     line-height: 40px;
     font-size: 20px;
+}
+
+.lt_aside {
+    width: 180px;
+    height: 100%;
+    background-color: #222D32;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    transition: all 1s;
+}
+
+.lt_aside.hidemenu {
+    left: -180px;
+}
+
+.brand {
+    background-color: #367FA9;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+}
+
+.brand a {
+    font-size: 24px;
+    color: #fff;
+}
+
+.user {
+    margin-top: 30px;
+}
+
+.user img {
+    display: block;
+    margin: 0 auto;
+    height: 80px;
+    width: 80px;
+    border-radius: 50%;
+}
+
+.user p {
+    text-align: center;
+    height: 40px;
+    line-height: 40px;
+    color: #fff;
+    font-size: 18px;
+}
+
+.nav {
+    margin-top: 30px;
+}
+
+.nav .current {
+    background-color: #1D1F21;
+    border-left: 3px solid #006699;
+}
+
+.nav a {
+    padding-left: 40px;
+    color: #fff;
+    height: 40px;
+    line-height: 40px;
+    border-left: 3px solid transparent;
+    display: block;
+}
+
+.nav i {
+    margin-right: 5px;
+}
+
+.nav .child a {
+    padding-left: 60px;
+}
+
+.lt_right {
+    padding-left: 180px;
+    padding-top: 50px;
+    width: 100%;
+    height: 1000px;
+    background-color: dodgerblue;
+    transition: all 1s;
+}
+
+.lt_right.hidemenu {
+    padding-left: 0;
+}
+
+.lt_main {
+    height: 50px;
+    width: 100%;
+    background-color: #3C8DBC;
+}
+
+.lt_main {
+    padding-left: 180px;
+    line-height: 50px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    transition: all 1s;
+}
+
+.lt_main.hidemenu {
+    padding-left: 0;
+}
+
+.lt_main a {
+    display: block;
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 16px;
+    color: #fff;
+}
+
+.container-fluid {
+    margin-top: 20px;
+}
+
+.modal-body p {
+    color: #A94442;
 }

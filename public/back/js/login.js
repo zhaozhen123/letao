@@ -50,7 +50,7 @@
             type: 'POST',
             data: $("#form").serialize(),
             success: function (info) {
-                console.log(info)
+                console.log(info);
                 if(info.success){
                     location.href = "index.html"
                 }
@@ -62,6 +62,12 @@
                 }
             }
         })
+    })
+
+
+    $("[type='reset']").on("click",function(){
+        console.log("123");
+        $("#form").data("bootstrapValidator").resetForm()
     })
 
 
