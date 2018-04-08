@@ -51,24 +51,26 @@
             data: $("#form").serialize(),
             success: function (info) {
                 console.log(info);
-                if(info.success){
+                if (info.success) {
                     location.href = "index.html"
                 }
-                if(info.error === 1001){
-                    $("#form").data("bootstrapValidator").updateStatus("password","INVALID","callback")
+                if (info.error === 1001) {
+                    $("#form").data("bootstrapValidator").updateStatus("password", "INVALID", "callback")
                 }
-                if(info.error === 1000){
-                    $("#form").data("bootstrapValidator").updateStatus("username","INVALID","callback")
+                if (info.error === 1000) {
+                    $("#form").data("bootstrapValidator").updateStatus("username", "INVALID", "callback")
                 }
             }
         })
-    })
+    });
 
 
-    $("[type='reset']").on("click",function(){
+    $("[type='reset']").on("click", function () {
         console.log("123");
         $("#form").data("bootstrapValidator").resetForm()
     })
+
+
 
 
 })();

@@ -100,7 +100,7 @@ a:link {
     padding-top: 50px;
     width: 100%;
     height: 1000px;
-    background-color: dodgerblue;
+    /*background-color: dodgerblue;*/
     transition: all 1s;
 }
 
@@ -143,3 +143,22 @@ a:link {
 .modal-body p {
     color: #A94442;
 }
+
+.echarts_1,
+.echarts_2 {
+    width: 48%;
+    height: 400px;
+}
+.table.table-bordered th,
+.table.table-bordered td{
+    vertical-align: middle;
+}
+.table{
+    margin-top: 20px;
+}
+.lt_content img{
+    width: 100px;
+}
+/*.form-group{*/
+    /*margin-top: 20px;*/
+/*}*/

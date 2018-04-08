@@ -26,8 +26,8 @@
                     <i class="glyphicon glyphicon-list"></i>
                     分类管理
                 </a>
-                <div class="child" style="display: none">
-                    <a href="first.html">一级分类</a>
+                <div class="child">
+                    <a href="first.html" class="current">一级分类</a>
                     <a href="product.html">二级分类</a>
                 </div>
             </li>
@@ -45,12 +45,54 @@
     <div class="container-fluid">
         <ol class="breadcrumb">
             <li><a href="index.html">管理系统</a></li>
-            <li>首页</li>
+            <li>分类管理</li>
+            <li>一级分类名</li>
         </ol>
 
+
         <div class="lt_content">
-            <div class="echarts_1 pull-left"></div>
-            <div class="echarts_2 pull-right"></div>
+
+            <button class="btn btn-default classify">添加分类</button>
+
+            <table class="table table-bordered text-center">
+                <thead>
+                <tr>
+                    <td width="20%">序号</td>
+                    <td width="80%">用户名</td>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+
+            <div class="text-right">
+                <ul id="paginator1">
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="modal fade" id="firstutModal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">添加分类</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form">
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="categoryName" placeholder="请输入一级分类">
+                        </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-primary" form="form">添加</button>
+            </div>
         </div>
     </div>
 </div>
@@ -59,12 +101,11 @@
 
 
 
-
 <div class="modal fade" id="logoutModal">
-    <div class="modal-dialog modal-sm" >
+    <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" ><span aria-hidden="true">&times;</span>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span>
                 </button>
                 <h4 class="modal-title">温馨提示</h4>
             </div>
@@ -84,86 +125,19 @@
 <script src="lib/bootstrap/js/bootstrap.js"></script>
 <script src="lib/bootstrap-validator/js/bootstrapValidator.js"></script>
 <script src="lib/nprogress/nprogress.js"></script>
+<script src="lib/bootstrap-paginator/bootstrap-paginator.js"></script>
 <script src="lib/echarts/echarts.min.js"></script>
+<script src="lib/artTemplate/template-web.js"></script>
 <script src="js/common.js"></script>
 <script src="js/index.js"></script>
-<script type="text/javascript">
-    // 基于准备好的dom，初始化echarts实例
-    // 柱状图
-    var echars1 = echarts.init(document.querySelector(".echarts_1"));
-
-    // 指定图表的配置项和数据
-    var option1 = {
-        // 大标题
-        title: {
-            text: '2017年注册人数'
-        },
-        // 提示框组件
-        tooltip: {},
-        // 图例
-        legend: {
-            data:['人数']
-        },
-        // x轴的数据
-        xAxis: {
-            data: ["1月","2月","3月","4月","5月","6月"]
-        },
-        // y 轴的刻度, 根据数据自动生成比较合适
-        yAxis: {},
-        // 数据
-        series: [{
-            name: '人数',
-            // 表示柱状图
-            type: 'bar',
-            data: [1000, 1500, 1800, 1200, 1000, 500]
-        }]
-    };
-    // 使用刚指定的配置项和数据显示图表。
-    echars1.setOption(option1);
-
-
-    // 存放图标的盒子
-    var echars2 = echarts.init(document.querySelector(".echarts_2"));
-    option = {
-        title : {
-            text: '热门品牌销售',
-            subtext: '2017年6月',
-            x:'center'
-        },
-        tooltip : {
-            trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
-        },
-        legend: {
-            orient: 'vertical',
-            left: 'left',
-            data: ['阿迪达斯','耐克','李宁','安踏','特步']
-        },
-        series : [
-            {
-                name: '品牌',
-                type: 'pie',
-                radius : '50%',
-                center: ['50%', '60%'],
-                data:[
-                    {value:335, name:'阿迪达斯'},
-                    {value:310, name:'耐克'},
-                    {value:234, name:'李宁'},
-                    {value:135, name:'安踏'},
-                    {value:1548, name:'特步'}
-                ],
-                itemStyle: {
-                    emphasis: {
-                        shadowBlur: 10,
-                        shadowOffsetX: 0,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                }
-            }
-        ]
-    };
-    // 实例化盒子
-    echars2.setOption(option);
+<script src="js/first.js"></script>
+<script type="text/html" id="tmp">
+    {{each rows v i}}
+    <tr>
+        <td>{{ (page-1) * size + i + 1 }}</td>
+        <td>{{v.categoryName}}</td>
+    </tr>
+    {{/each}}
 </script>
 </body>
 </html>

@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>乐淘电商</title>
+    <link rel="stylesheet" href="lib/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="lib/bootstrap-validator/css/bootstrapValidator.css">
+    <link rel="stylesheet" href="lib/nprogress/nprogress.css">
+    <link rel="stylesheet" href="css/common.css">
+</head>
+<body>
+<!--左边菜单栏-->
+<div class="lt_aside">
+    <div class="brand">
+        <a href="">黑马19期</a>
+    </div>
+    <div class="user">
+        <img src="images/default.jpg" alt="">
+        <p>超级管理员</p>
+    </div>
+    <div class="nav">
+        <ul>
+            <li><a href="user.htmls"><i class="glyphicon glyphicon-user"></i>用户管理</a></li>
+            <li>
+                <a href="#" class="category">
+                    <i class="glyphicon glyphicon-list"></i>
+                    分类管理
+                </a>
+                <div class="child">
+                    <a href="first.html">一级分类</a>
+                    <a href="product.html" class="current">二级分类</a>
+                </div>
+            </li>
+            <li><a href="#"><i class="glyphicon glyphicon-tags"></i>商品管理</a></li>
+        </ul>
+    </div>
+</div>
+<div class="lt_right">
+    <div class="lt_main">
+        <a href="#" class="pull-left icon_bn"><i class="glyphicon glyphicon-align-justify"></i></a>
+        <a href="#" class="pull-right icon_exit"><i class="glyphicon glyphicon-log-out"></i></a>
+
+    </div>
+
+    <div class="container-fluid">
+        <ol class="breadcrumb">
+            <li><a href="index.html">管理系统</a></li>
+            <li>分类管理</li>
+            <li>二级分类</li>
+        </ol>
+
+
+        <div class="lt_content">
+
+            <button class="btn btn-default classify">添加分类</button>
+
+            <table class="table table-bordered text-center">
+                <thead>
+                <tr>
+                    <td width="10%">序号</td>
+                    <td width="30%">一级分类名</td>
+                    <td width="30%">二级分类名</td>
+                    <td width="30%">二级分类LOGO</td>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+
+            <div class="text-right">
+                <ul id="paginator1">
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<div class="modal fade" id="productutModal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">添加一个分类</h4>
+            </div>
+            <div class="modal-body">
+                <form id="form">
+                    <div class="form-group  dropdown">
+                        <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                            <span id="dropdownText">请选择一级分类</span>
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+
+                        </ul>
+                        <input type="hidden" name="categoryId">
+                        <input type="hidden" name="hot" val="1">
+                    </div>
+                    <div class="form-group">
+                            <input type="text" class="form-control" name="brandName" placeholder="请输入二级分类名称">
+                    </div>
+                    <div class="form-group">
+                        <label class="btn btn-default" for="fileupload">上传图片</label>
+                        <!--上传图片-->
+                        <input type="file" name="pic1"  data-url="/category/addSecondCategoryPic" id="fileupload" style="display: none">
+                    </div>
+                    <div class="form-group" id="imgBox">
+                        <img src="images/none.png" alt="" width="100" height="100">
+                        <input type="hidden" name="brandLogo">
+                    </div>
+
+                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="submit" class="btn btn-primary" id="productuutBtn" form="form">添加</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="logoutModal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">温馨提示</h4>
+            </div>
+            <div class="modal-body">
+                <p><i class="glyphicon glyphicon-info-sign"></i>您确认退出后台管理系统吗&hellip;</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="logoutBtn">退出</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="lib/jquery/jquery.js"></script>
+<script src="lib/bootstrap/js/bootstrap.js"></script>
+<script src="lib/bootstrap-validator/js/bootstrapValidator.js"></script>
+<script src="lib/nprogress/nprogress.js"></script>
+<script src="lib/bootstrap-paginator/bootstrap-paginator.js"></script>
+<script src="lib/echarts/echarts.min.js"></script>
+<script src="lib/artTemplate/template-web.js"></script>
+<!--上传图片插件-->
+<script src="lib/jquery-fileupload/jquery.ui.widget.js"></script>
+<script src="lib/jquery-fileupload/jquery.fileupload.js"></script>
+<script src="js/common.js"></script>
+<script src="js/product.js"></script>
+<script type="text/html" id="tmp">
+    {{each rows v i}}
+    <tr>
+        <td>{{(page-1)*size+i+1}}</td>
+        <td>{{v.categoryName}}</td>
+        <td>{{v.brandName}}</td>
+        <td>
+            <img src="{{v.brandLogo ? v.brandLogo :'images/none.png'}}" alt="">
+        </td>
+    </tr>
+    {{/each}}
+</script>
+<script type="text/html" id="tmp1">
+    {{each rows v i}}
+    <li><a href="#" data-id="{{v.id}}">{{v.categoryName}}</a></li>
+    {{/each}}
+</script>
+</body>
+</html>

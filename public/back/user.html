@@ -20,7 +20,7 @@
     </div>
     <div class="nav">
         <ul>
-            <li><a href="user.html"><i class="glyphicon glyphicon-user"></i>用户管理</a></li>
+            <li class="current"><a href="user.html"><i class="glyphicon glyphicon-user"></i>用户管理</a></li>
             <li>
                 <a href="#" class="category">
                     <i class="glyphicon glyphicon-list"></i>
@@ -45,12 +45,53 @@
     <div class="container-fluid">
         <ol class="breadcrumb">
             <li><a href="index.html">管理系统</a></li>
-            <li>首页</li>
+            <li>用户管理</li>
         </ol>
 
+
         <div class="lt_content">
-            <div class="echarts_1 pull-left"></div>
-            <div class="echarts_2 pull-right"></div>
+            <table class="table table-bordered text-center">
+                <thead>
+                <tr>
+                    <td>序号</td>
+                    <td>用户名</td>
+                    <td>手机号</td>
+                    <td>状态</td>
+                    <td>操作</td>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+
+
+            <div class="text-right">
+                <ul id="paginator">
+                </ul>
+            </div>
+        </div>
+
+
+
+    </div>
+</div>
+
+<div class="modal fade" id="userutModal">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">温馨提示</h4>
+            </div>
+            <div class="modal-body">
+                <p><i class="glyphicon glyphicon-info-sign"></i>你确定要执行此操作吗？&hellip;</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                <button type="button" class="btn btn-primary" id="userutBtn">确认</button>
+            </div>
         </div>
     </div>
 </div>
@@ -61,10 +102,10 @@
 
 
 <div class="modal fade" id="logoutModal">
-    <div class="modal-dialog modal-sm" >
+    <div class="modal-dialog modal-sm">
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" ><span aria-hidden="true">&times;</span>
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span>
                 </button>
                 <h4 class="modal-title">温馨提示</h4>
             </div>
@@ -85,85 +126,27 @@
 <script src="lib/bootstrap-validator/js/bootstrapValidator.js"></script>
 <script src="lib/nprogress/nprogress.js"></script>
 <script src="lib/echarts/echarts.min.js"></script>
+<script src="lib/artTemplate/template-web.js"></script>
+<script src="lib/bootstrap-paginator/bootstrap-paginator.js"></script>
 <script src="js/common.js"></script>
 <script src="js/index.js"></script>
-<script type="text/javascript">
-    // 基于准备好的dom，初始化echarts实例
-    // 柱状图
-    var echars1 = echarts.init(document.querySelector(".echarts_1"));
-
-    // 指定图表的配置项和数据
-    var option1 = {
-        // 大标题
-        title: {
-            text: '2017年注册人数'
-        },
-        // 提示框组件
-        tooltip: {},
-        // 图例
-        legend: {
-            data:['人数']
-        },
-        // x轴的数据
-        xAxis: {
-            data: ["1月","2月","3月","4月","5月","6月"]
-        },
-        // y 轴的刻度, 根据数据自动生成比较合适
-        yAxis: {},
-        // 数据
-        series: [{
-            name: '人数',
-            // 表示柱状图
-            type: 'bar',
-            data: [1000, 1500, 1800, 1200, 1000, 500]
-        }]
-    };
-    // 使用刚指定的配置项和数据显示图表。
-    echars1.setOption(option1);
-
-
-    // 存放图标的盒子
-    var echars2 = echarts.init(document.querySelector(".echarts_2"));
-    option = {
-        title : {
-            text: '热门品牌销售',
-            subtext: '2017年6月',
-            x:'center'
-        },
-        tooltip : {
-            trigger: 'item',
-            formatter: "{a} <br/>{b} : {c} ({d}%)"
-        },
-        legend: {
-            orient: 'vertical',
-            left: 'left',
-            data: ['阿迪达斯','耐克','李宁','安踏','特步']
-        },
-        series : [
-            {
-                name: '品牌',
-                type: 'pie',
-                radius : '50%',
-                center: ['50%', '60%'],
-                data:[
-                    {value:335, name:'阿迪达斯'},
-                    {value:310, name:'耐克'},
-                    {value:234, name:'李宁'},
-                    {value:135, name:'安踏'},
-                    {value:1548, name:'特步'}
-                ],
-                itemStyle: {
-                    emphasis: {
-                        shadowBlur: 10,
-                        shadowOffsetX: 0,
-                        shadowColor: 'rgba(0, 0, 0, 0.5)'
-                    }
-                }
-            }
-        ]
-    };
-    // 实例化盒子
-    echars2.setOption(option);
+<script src="js/user.js"></script>
+<script type="text/html" id="tmp">
+    {{each rows v i}}
+    <tr>
+        <td>{{ (page-1) * size + i + 1 }}</td>
+        <td>{{v.username}}</td>
+        <td>{{v.mobile}}</td>
+        <td>{{v.isDelete === 1 ?"正常":'禁用'}}</td>
+        <td data-id="{{v.id}}">
+            {{if v.isDelete === 1 }}
+            <button class="btn btn-danger btn-sm">禁用</button>
+            {{else}}
+            <button class="btn btn-success btn-sm">启用</button>
+            {{/if}}
+        </td>
+    </tr>
+    {{/each}}
 </script>
 </body>
 </html>
