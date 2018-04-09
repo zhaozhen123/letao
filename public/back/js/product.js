@@ -14,7 +14,7 @@
             },
             success:function(info){
                 console.log(info);
-                $(".lt_content tbody").html(template("tmp",info))
+                $(".lt_content tbody").html(template("tmp",info));
 
 
                 $("#paginator1").bootstrapPaginator({
@@ -55,10 +55,10 @@
         var text = $(this).text();
         $("#dropdownText").text(text);
         var id = $(this).data("id");
-        $('[name="categoryId"]').val(id)
+        $('[name="categoryId"]').val(id);
 
         $("#form").data("bootstrapValidator").updateStatus("categoryId", "VALID")
-    })
+    });
 
 
     $("#fileupload").fileupload({
@@ -114,27 +114,26 @@
             }
             
         }
-    })
+    });
 
 $("#form").on("success.form.bv",function(e){
-    e.preventDefault()
+    e.preventDefault();
 
     $.ajax({
         url: '/category/addSecondCategory',
         type:"post",
         data:$("#form").serialize(),
         success:function(info){
-            console.log(info)
+            console.log(info);
 
              $("#productutModal").modal("hide");
-             $("#form").data("bootstrapValidator").resetForm(true)
+             $("#form").data("bootstrapValidator").resetForm(true);
              currentPage = 1;
              render();
              $("#dropdownText").text("请选择一级分类名称");
                $("#imgBox img").attr("src", "images/none.png");
         }
     })
-
 })
 
 

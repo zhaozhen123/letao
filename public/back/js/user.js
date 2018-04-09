@@ -35,7 +35,6 @@
             }
         })
     }
-
     $(".lt_content tbody").on("click", ".btn", function () {
         // console.log("123")
         $("#userutModal").modal("show");
@@ -62,8 +61,6 @@
                     }
                 }
             })
-
-
         })
     })
 
